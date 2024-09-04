@@ -1,0 +1,65 @@
+STEP 1: DOWNLOAD AND INSTALL KAFKA
+https://dlcdn.apache.org/kafka/3.2.0/...
+
+STEP 2: START THE KAFKA ENVIRONMENT
+Start the ZooKeeper service
+.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+
+Start the Kafka broker service
+.\bin\windows\kafka-server-start.bat .\config\server.properties
+
+STEP 3: CREATE A TOPIC TO STORE YOUR EVENTS
+.\bin\windows\kafka-topics.bat --create --topic inventory --bootstrap-server localhost:9092
+
+STEP 4: WRITE SOME EVENTS INTO THE TOPIC
+.\bin\windows\kafka-console-producer.bat --topic topic_demo --bootstrap-server localhost:9092
+
+STEP 5:  READ THE EVENTS
+.\bin\windows\kafka-console-consumer.bat --topic inventory --from-beginning --bootstrap-server localhost:9092
+
+
+
+
+
+wget https://downloads.apache.org/kafka/3.8.0/kafka_2.13-3.8.0.tgz
+tar -xzf kafka_2.13-3.8.0.tgz
+mv kafka_2.13-3.8.0 kafka
+
+# Define the protocol and port for Kafka listeners
+listeners=PLAINTEXT://0.0.0.0:9092
+
+# Define the advertised hostname and port that clients will use to connect to Kafka
+advertised.listeners=PLAINTEXT://65.0.124.229:9092
+
+sudo ss -tuln | grep 2181
+
+
+free -m
+
+export KAFKA_HEAP_OPTS="-Xmx512M -Xms512M"
+
+bin/zookeeper-server-start.sh config/zookeeper.properties
+bin/kafka-server-start.sh config/server.properties
+
+
+
+
+
+bin/kafka-topics.sh --list --bootstrap-server 65.0.124.229:9092
+
+bin/kafka-topics.sh --create --topic inventory --bootstrap-server 65.0.124.229:9092
+bin/kafka-topics.sh --delete --topic inventory --bootstrap-server 65.0.124.229:9092
+
+bin/kafka-topics.sh --list --bootstrap-server 65.0.124.229:9092
+
+
+bin/kafka-console-consumer.sh --topic inventory --from-beginning --bootstrap-server 65.0.124.229:9092
+
+
+
+bin/kafka-console-producer.sh --topic inventory --bootstrap-server 65.0.124.229:9092
+
+
+
+
+
